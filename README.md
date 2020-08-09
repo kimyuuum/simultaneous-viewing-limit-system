@@ -2,9 +2,6 @@
 Limit simultaneous viewing with Apache Kafka & Spring Boot Microservices, Redis
 
 
-[**You can watch what i am doing now 💃**](https://www.notion.so/kimyuuum/e83231923cb044f8bb3127f820f309b1?v=face1a0289ae4abc86ced133a95e3c9c)
-
-
 ### System Requirements
 ----
 + Java 8
@@ -13,4 +10,4 @@ Limit simultaneous viewing with Apache Kafka & Spring Boot Microservices, Redis
 
 
 ### Redis Cluster tutorial
-[😎  Start Redis cluster easily in Korean](https://github.com/kimyuuum/redis-cluster-tutorial)
+[😎  Start Redis cluster easily](https://github.com/kimyuuum/redis-cluster-tutorial)
