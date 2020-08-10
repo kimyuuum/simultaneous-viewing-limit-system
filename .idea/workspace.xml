@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5fefc969-cb6b-42c9-9f3e-e406e8956256" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="$PROJECT_DIR$/.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1ft06Lftiq3l79umX3ZDJwfrNu2" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs.mocha.mocha_node_package_dir" value="" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5fefc969-cb6b-42c9-9f3e-e406e8956256" name="Default Changelist" comment="" />
+      <created>1597021904508</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1597021904508</updated>
+      <workItem from="1597021906634" duration="1844000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="-1496" y="31" width="1071" height="911" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1597023076461">
+      <screen x="-1920" y="-115" width="1920" height="1057" />
+    </state>
+    <state x="-1496" y="31" width="1071" height="911" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1680.1027/-1920.-115.1920.1057@-1920.-115.1920.1057" timestamp="1597023076461" />
+    <state x="-1262" y="215" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1597023074334">
+      <screen x="-1920" y="-115" width="1920" height="1057" />
+    </state>
+    <state x="-1262" y="215" key="#com.intellij.ide.util.TreeClassChooserDialog/0.23.1680.1027/-1920.-115.1920.1057@-1920.-115.1920.1057" timestamp="1597023074334" />
+    <state x="-1108" y="309" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1597022752980">
+      <screen x="-1920" y="-115" width="1920" height="1057" />
+    </state>
+    <state x="-1108" y="309" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.23.1680.1027/-1920.-115.1920.1057@-1920.-115.1920.1057" timestamp="1597022752980" />
+    <state x="-1351" y="138" width="782" height="550" key="find.popup" timestamp="1597023155398">
+      <screen x="-1920" y="-115" width="1920" height="1057" />
+    </state>
+    <state x="-1351" y="138" width="782" height="550" key="find.popup/0.23.1680.1027/-1920.-115.1920.1057@-1920.-115.1920.1057" timestamp="1597023155398" />
+    <state x="-1591" y="77" key="new project wizard" timestamp="1597023505101">
+      <screen x="-1920" y="-115" width="1920" height="1057" />
+    </state>
+    <state x="-1591" y="77" key="new project wizard/0.23.1680.1027/-1920.-115.1920.1057@-1920.-115.1920.1057" timestamp="1597023505101" />
+  </component>
+</project>

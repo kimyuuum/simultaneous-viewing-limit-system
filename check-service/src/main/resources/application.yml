@@ -1,0 +1,30 @@
+spring:
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+  application:
+    name: check-service
+  jpa:
+    database-platform: org.hibernate.dialect.MYSQL5Dialect
+    open-in-view: false
+    show-sql: false
+    properties:
+      hibernate:
+        generate_statistics: false
+        dialect: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  redis:
+    cluster:
+      nodes:
+        - 127.0.0.1:7000
+        - 127.0.0.1:7001
+        - 127.0.0.1:7002
+        - 127.0.0.1:7003
+        - 127.0.0.1:7004
+        - 127.0.0.1:7005
+#    port: 7000
+#    host: localhost
+server:
+  port: 8080
