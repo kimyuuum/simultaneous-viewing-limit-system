@@ -16,7 +16,6 @@ public class UserDto {
         @JsonProperty("log_idx")
         private Long logIdx;
 
-        @JsonProperty
         private String pcid;
 
         @JsonProperty("episode_id")
