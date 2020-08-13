@@ -1,4 +1,4 @@
-package com.skb.checkservice.config;
+package com.skb.checkservice.config.redis;
 
 
 import org.springframework.boot.context.properties.ConfigurationProperties;

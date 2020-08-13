@@ -1,4 +1,4 @@
-package com.skb.checkservice.config;
+package com.skb.checkservice.config.redis;
 
 import com.skb.checkservice.domain.User;
 import org.springframework.context.annotation.Bean;
