@@ -26,15 +26,6 @@ public class WatchInfoDto {
         @JsonProperty("mac_address")
         private String macAddress;
 
-        public WatchInfo toEntity(){
-            return WatchInfo.builder()
-                    .pcid(pcid)
-                    .episodeId(episodeId)
-                    .stbId(stbId)
-                    .playStart(playStart)
-                    .macAddress(macAddress)
-                    .build();
-        }
     }
 
 }
