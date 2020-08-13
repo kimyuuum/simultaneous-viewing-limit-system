@@ -1,30 +1,24 @@
 package com.skb.connectservice.adapter;
 
+import com.skb.connectservice.domain.WatchInfo;
 import com.skb.connectservice.dto.WatchInfoDto;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.kafka.support.KafkaHeaders;
-import org.springframework.messaging.Message;
-import org.springframework.messaging.support.MessageBuilder;
+import org.springframework.stereotype.Component;
 
+@Component
+@RequiredArgsConstructor
 public class MessageSender {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(MessageSender.class);
+    private static final Logger logger = LoggerFactory.getLogger(MessageSender.class);
 
-    private static final String topic = "connectNewUser";
+    private final KafkaTemplate<String, WatchInfoDto.Request> kafkaTemplate;
 
-    @Autowired
-    private KafkaTemplate<String, WatchInfoDto.Request> kafkaTemplate;
-
-    public void sendMessage(WatchInfoDto.Request dto){
-        LOGGER.info("sending watch request= '{}'",dto.toEntity());
-        Message<String> message = MessageBuilder
-                                                                .withPayload(dto.toEntity().toString())
-                                                                .setHeader(KafkaHeaders.TOPIC,topic)
-                                                                .build();
-        kafkaTemplate.send(message);
+    public void sendMessage(String topic, WatchInfoDto.Request dto){
+        kafkaTemplate.send(topic,dto);
+        logger.info("produce new user complete");
     }
 
 }
