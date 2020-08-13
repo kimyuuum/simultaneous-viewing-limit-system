@@ -37,18 +37,6 @@ class CheckServiceApplicationTests {
     }
 
     @Test
-    void testDataHandling() {
-        //basic redis connection test
-        redisTemplate.getConnectionFactory().getConnection().info().toString();
-
-        String key = "aaa";
-        String value = "abc";
-
-//        redisTemplate.opsForValue().set(key, value);
-
-    }
-
-    @Test
     void testJsonDataWithHash() throws Exception {
         //test User Object put,get from redis
 

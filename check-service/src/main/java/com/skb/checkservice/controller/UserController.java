@@ -1,4 +1,4 @@
-package com.skb.checkservice.Controller;
+package com.skb.checkservice.controller;
 
 import com.skb.checkservice.dto.UserDto;
 import com.skb.checkservice.service.RedisClusterService;
