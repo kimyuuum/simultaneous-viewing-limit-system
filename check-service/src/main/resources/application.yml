@@ -1,3 +1,5 @@
+server:
+  port: 9001
 spring:
   jackson:
     serialization:
@@ -24,7 +26,8 @@ spring:
         - 127.0.0.1:7003
         - 127.0.0.1:7004
         - 127.0.0.1:7005
-#    port: 7000
-#    host: localhost
-server:
-  port: 8080
+  kafka:
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    bootstrap-servers: localhost:9093
