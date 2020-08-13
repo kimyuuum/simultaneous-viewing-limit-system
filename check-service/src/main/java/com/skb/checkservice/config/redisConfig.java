@@ -1,6 +1,5 @@
 package com.skb.checkservice.config;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.skb.checkservice.domain.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,10 +8,8 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
-import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
-import org.springframework.util.StringUtils;
 
 @Configuration(proxyBeanMethods = true)
 @EnableRedisRepositories
@@ -25,21 +22,21 @@ public class redisConfig {
     }
 
     @Bean
-    public RedisConnectionFactory redisConnectionFactory(){
+    public RedisConnectionFactory redisConnectionFactory() {
         RedisClusterConfiguration redisClusterConfiguration = new RedisClusterConfiguration();
 
         clusterConfigurationProperties.getNodes().forEach(s -> {
             //parse host and port
             String[] url = s.split(":");
-            redisClusterConfiguration.clusterNode(url[0],Integer.parseInt(url[1]));
+            redisClusterConfiguration.clusterNode(url[0], Integer.parseInt(url[1]));
         });
 
         return new JedisConnectionFactory(redisClusterConfiguration);
     }
 
     @Bean
-    public RedisTemplate<String, User> redisTemplate(){
-        RedisTemplate<String,User> redisTemplate = new RedisTemplate<>();
+    public RedisTemplate<String, User> redisTemplate() {
+        RedisTemplate<String, User> redisTemplate = new RedisTemplate<>();
 
         redisTemplate.setConnectionFactory(this.redisConnectionFactory());
 
