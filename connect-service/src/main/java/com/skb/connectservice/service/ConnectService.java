@@ -14,8 +14,9 @@ public class ConnectService {
     }
 
     public void connectUser(WatchInfoDto.Request request){
+        String topic = "connectNewUser";
         //user 유효성 검증이 필요한가
-        //user Info가 null이면 notFound긴 한데
-        messageSender.sendMessage(request);
+        //user Info가 null이면 notFound..?
+        messageSender.sendMessage(topic,request);
     }
 }
