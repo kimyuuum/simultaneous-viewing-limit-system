@@ -30,4 +30,4 @@ spring:
     consumer:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-    bootstrap-servers: localhost:9093
+    bootstrap-servers: localhost:9093,localhost:9094,localhost:9095
