@@ -1,6 +1,7 @@
 package com.skb.checkservice.controller;
 
 import com.skb.checkservice.dto.UserDto;
+import com.skb.checkservice.dto.WatchInfoDto;
 import com.skb.checkservice.service.RedisClusterService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +19,7 @@ public class UserController {
     }
 
     @PostMapping
-    public UserDto.Response createUserLog(@RequestBody UserDto.Request request){
+    public UserDto.Response createUserLog(@RequestBody WatchInfoDto.Request request){
         return new UserDto.Response(redisClusterService.create(request));
     }
 }

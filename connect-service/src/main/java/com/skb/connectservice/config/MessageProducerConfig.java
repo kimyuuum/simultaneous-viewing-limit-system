@@ -1,7 +1,6 @@
 package com.skb.connectservice.config;
 
 
-import com.skb.connectservice.domain.WatchInfo;
 import com.skb.connectservice.dto.WatchInfoDto;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;

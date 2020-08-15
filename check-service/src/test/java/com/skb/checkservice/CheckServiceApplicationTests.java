@@ -25,7 +25,6 @@ class CheckServiceApplicationTests {
 
     private User newUser() {
         return User.builder()
-                .logIdx((long) 1)
                 .macAddress("testMacNum")
                 .playStart("2010-10-10'T'08:03:02")
                 .playEnd("2020-10-10'T'12:01:01")
