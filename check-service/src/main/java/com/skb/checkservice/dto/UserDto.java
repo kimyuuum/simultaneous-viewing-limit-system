@@ -13,9 +13,6 @@ public class UserDto {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public static class Request{
 
-        @JsonProperty("log_idx")
-        private Long logIdx;
-
         private String pcid;
 
         @JsonProperty("episode_id")
@@ -41,7 +38,6 @@ public class UserDto {
 
         public User toEntity(){
             return User.builder()
-                    .logIdx(logIdx)
                     .pcid(pcid)
                     .episodeId(episodeId)
                     .stbId(stbId)
@@ -56,9 +52,6 @@ public class UserDto {
     @Getter
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public static class Response {
-
-        @JsonProperty("log_idx")
-        private Long logIdx;
 
         @JsonProperty
         private String pcid;
@@ -82,7 +75,6 @@ public class UserDto {
         private boolean running;
 
         public Response(User user) {
-            logIdx = user.getLogIdx();
             pcid = user.getPcid();
             episodeId = user.getEpisodeId();
             stbId = user.getStbId();
