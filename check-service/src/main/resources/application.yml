@@ -28,6 +28,5 @@ spring:
         - 127.0.0.1:7005
   kafka:
     consumer:
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      auto-offset-reset: earliest
     bootstrap-servers: localhost:9093
