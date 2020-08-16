@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="sockjs-0.3.4.min.js"></script>
+    <script src="stomp.min.js"></script>
+</head>
+
+<body>
+<p th:inline="text">
+    Client Name : <b>[[${#httpServletRequest.remoteUser}]]</b>
+    (<a href="/logout">logout</a>)
+</p>
+<p>
+    Click the button to watch VOD.
+    <br />
+    <strong>If user exists,</strong> existing user will be notified via web socket.
+</p>
+<input id="send" type="button" value="Click me" />
+
+<script>
+
+    /**
+     * Send an action to the server.
+     */
+    function sendAction(event) {
+        event.preventDefault();
+        $.ajax({
+            url: "/send",
+            type: "POST"
+        });
+        return;
+    } // function sendAction
+
+    /**
+     * Init operations.
+     */
+    $(document).ready(function() {
+
+        // Bind the on-click event for the button element.
+        $("#send").on("click", sendAction);
+
+    });
+
+</script>
+
+<br/>
+<hr/>
+</body>
+
+</html>
