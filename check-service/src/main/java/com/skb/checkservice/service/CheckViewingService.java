@@ -1,6 +1,7 @@
 package com.skb.checkservice.service;
 
 import com.skb.checkservice.adapter.MessageSender;
+import com.skb.checkservice.dto.UserDto;
 import com.skb.checkservice.dto.WatchInfoDto;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +21,14 @@ public class CheckViewingService {
         if(isRunning){
             // push alert to new User another user already exists -> user Kafka message sender
             String topic = "userExists";
-            String clientId = dto.getPcid();
-            messageSender.sendMessage(topic,clientId);
+            String existUser = redisClusterService.getExistUser(dto.getStbId(),dto.getEpisodeId());
+
+            UserDto.Response response = UserDto.Response.builder()
+                                                    .newUser(dto.getPcid())
+                                                    .existUser(existUser)
+                                                    .build();
+
+            messageSender.sendMessage(topic,response);
         }else{
             redisClusterService.create(dto);
         }

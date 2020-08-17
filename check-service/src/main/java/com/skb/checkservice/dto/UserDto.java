@@ -2,87 +2,21 @@ package com.skb.checkservice.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.skb.checkservice.domain.User;
+import lombok.Builder;
 import lombok.Getter;
-import org.springframework.format.annotation.DateTimeFormat;
 
 public class UserDto {
 
-
     @Getter
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public static class Request{
+    @Builder
+    public static class Response{
 
-        private String pcid;
+        @JsonProperty("new_user")
+        private String newUser;
 
-        @JsonProperty("episode_id")
-        private String episodeId;
-
-        @JsonProperty("stb_id")
-        private String stbId;
-
-        @JsonProperty("play_start")
-        @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-        private String playStart;
-
-        @JsonProperty("play_end")
-        @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-        private String playEnd;
-
-        @JsonProperty("mac_address")
-        private String macAddress;
-
-        @JsonProperty("running")
-        private boolean running;
-
-
-        public User toEntity(){
-            return User.builder()
-                    .pcid(pcid)
-                    .episodeId(episodeId)
-                    .stbId(stbId)
-                    .playStart(playStart)
-                    .playEnd(playEnd)
-                    .macAddress(macAddress)
-                    .running(running)
-                    .build();
-        }
-    }
-
-    @Getter
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    public static class Response {
-
-        @JsonProperty
-        private String pcid;
-
-        @JsonProperty("episode_id")
-        private String episodeId;
-
-        @JsonProperty("stb_id")
-        private String stbId;
-
-        @JsonProperty("play_start")
-        private String playStart;
-
-        @JsonProperty("play_end")
-        private String playEnd;
-
-        @JsonProperty("mac_address")
-        private String macAddress;
-
-        @JsonProperty("running")
-        private boolean running;
-
-        public Response(User user) {
-            pcid = user.getPcid();
-            episodeId = user.getEpisodeId();
-            stbId = user.getStbId();
-            playStart = user.getPlayStart();
-            playEnd = user.getPlayEnd();
-            macAddress = user.getMacAddress();
-            running = user.isRunning();
-        }
+        @JsonProperty("exist_user")
+        private String existUser;
     }
 
 }

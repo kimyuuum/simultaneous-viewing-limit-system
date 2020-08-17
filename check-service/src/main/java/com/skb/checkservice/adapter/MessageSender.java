@@ -1,5 +1,6 @@
 package com.skb.checkservice.adapter;
 
+import com.skb.checkservice.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,10 +13,10 @@ public class MessageSender {
 
     private static final Logger logger = LoggerFactory.getLogger(MessageSender.class);
 
-    private final KafkaTemplate<String,String> kafkaTemplate;
+    private final KafkaTemplate<String,UserDto.Response> kafkaTemplate;
 
-    public void sendMessage(String topic, String message){
-        kafkaTemplate.send(topic,message);
+    public void sendMessage(String topic, UserDto.Response dto){
+        kafkaTemplate.send(topic,dto);
         logger.info("produce user exists complete");
     }
 }

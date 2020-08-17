@@ -44,4 +44,8 @@ public class RedisClusterService {
             return false;
         }
     }
+
+    public String getExistUser(String stbId, String episodeId){
+        return objectMapper.convertValue(redisTemplate.opsForHash().get(stbId,episodeId),User.class).getPcid();
+    }
 }
