@@ -1,6 +1,5 @@
 package com.skb.connectservice.adapter;
 
-import com.skb.connectservice.domain.WatchInfo;
 import com.skb.connectservice.dto.WatchInfoDto;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;

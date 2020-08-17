@@ -9,38 +9,70 @@
 
 <body>
 <p th:inline="text">
-    Client Name : <b>[[${#httpServletRequest.remoteUser}]]</b>
+    Client Name : <b id = "userName">[[${#httpServletRequest.remoteUser}]]</b>
     (<a href="/logout">logout</a>)
 </p>
 <p>
     Click the button to watch VOD.
     <br />
-    <strong>If user exists,</strong> existing user will be notified via web socket.
+    <strong>If user exists,</strong> you will be notified via web socket.
 </p>
-<input id="send" type="button" value="Click me" />
+<input id="send" type="button" value="Click me"/>
 
 <script>
 
     /**
      * Send an action to the server.
      */
-    function sendAction(event) {
+
+    function connectVOD(event){
         event.preventDefault();
+
+        var data = {pcid:$("#userName").text()};
+
         $.ajax({
             url: "/send",
-            type: "POST"
+            type: "POST",
+            contentType: 'application/json',
+            data:JSON.stringify(data),
+            dataType: JSON
         });
+
         return;
-    } // function sendAction
+    }
+
+    /*
+     * Open the web socket and subscribe /notify channel to limit simultaneous viewing
+     */
+    function connect() {
+
+        // Init the SockJS object
+        var socket = new SockJS('/ws');
+        var stompClient = Stomp.over(socket);
+
+        // Subscribe the '/notify' channel
+        stompClient.connect({}, function(frame) {
+            stompClient.subscribe('/user/queue/notify', function(notification) {
+
+                // Call the notify function when receive a notification
+                notify(JSON.parse(notification.body).message);
+            });
+        });
+
+        return;
+    } // function connect
+
+    function notify(message) {
+        let result = confirm(message + " Are you sure you want to disconnect?");
+        return;
+    }
 
     /**
      * Init operations.
      */
     $(document).ready(function() {
-
-        // Bind the on-click event for the button element.
-        $("#send").on("click", sendAction);
-
+        connect();
+        $("#send").on("click", connectVOD);
     });
 
 </script>

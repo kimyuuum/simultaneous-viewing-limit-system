@@ -2,6 +2,7 @@ package com.skb.pushservice.service;
 
 
 import com.skb.pushservice.domain.Notification;
+import com.skb.pushservice.dto.ExistDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
@@ -24,4 +25,9 @@ public class NotificationService {
         simpMessagingTemplate.convertAndSendToUser(userName,"/queue/notify",notification);
     }
 
+    public void notifyUserExists(ExistDto.Response dto){
+        String msg = "User [" + dto.getExistUser() + "] exists.";
+        Notification notification = Notification.builder().message(msg).build();
+        simpMessagingTemplate.convertAndSendToUser(dto.getNewUser(),"/queue/notify",notification);
+    }
 }
