@@ -2,6 +2,7 @@ package com.skb.pushservice.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.skb.pushservice.domain.WatchInfo;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -27,6 +28,23 @@ public class WatchInfoDto {
         @JsonProperty("mac_address")
         private String macAddress;
 
+        @JsonProperty("play_end")
+        private String playEnd;
+
+        @JsonProperty
+        private boolean running;
+
+        public WatchInfo toEntity(){
+            return WatchInfo.builder()
+                    .pcid(pcid)
+                    .episodeId(episodeId)
+                    .stbId(stbId)
+                    .macAddress(macAddress)
+                    .playStart(playStart)
+                    .playEnd(playEnd)
+                    .running(running)
+                    .build();
+        }
     }
 
 }
