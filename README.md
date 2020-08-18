@@ -9,7 +9,7 @@ Limit simultaneous viewing with Apache Kafka & Spring Boot Microservices, Redis
 
 </br>
 
-Most people use media services. Recently, users (especially because of the covid-19 😷) have been staying indoors, and usage has been increasing. In particular, it uses OTT services, which have subscription-based pricing services.
+Most people use media services. Recently, users (especially because of the covid-19 😷 ) have been staying indoors, and usage has been increasing. In particular, it uses OTT services, which have subscription-based pricing services.
 
 Therefore, there is a trend that users **share their accounts** and use them. Are there any **policy or technical issues** that could arise from this?
 
