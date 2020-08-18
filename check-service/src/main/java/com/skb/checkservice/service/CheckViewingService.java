@@ -33,5 +33,10 @@ public class CheckViewingService {
             redisClusterService.create(dto);
         }
     }
+
+    public void updateLog(WatchInfoDto.Request dto){
+        redisClusterService.create(dto);
+    }
+
 }
 

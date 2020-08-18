@@ -1,9 +1,8 @@
 package com.skb.pushservice.controller;
 
-import com.skb.pushservice.domain.Notification;
-import com.skb.pushservice.dto.ConnectDto;
+import com.skb.pushservice.dto.ExistDto;
+import com.skb.pushservice.dto.WatchInfoDto;
 import com.skb.pushservice.service.ConnectService;
-import com.skb.pushservice.service.NotificationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,34 +14,45 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class NotificationController {
 
-    private final NotificationService notificationService;
-
     private final ConnectService connectService;
 
-    public NotificationController(NotificationService notificationService, ConnectService connectService) {
-        this.notificationService = notificationService;
+    public NotificationController(ConnectService connectService) {
         this.connectService = connectService;
     }
 
-
     @RequestMapping("/")
-    public String index(){
+    public String index() {
         return "index";
     }
 
+    //landing page
+    @RequestMapping("/main")
+    public String main(){return "main";}
+
     @RequestMapping("/notifications")
-    public String notifications(){
+    public String notifications() {
         return "notifications";
     }
 
     @PostMapping("/send")
     @ResponseBody
-    public ResponseEntity<?> send(@RequestBody ConnectDto.Request request){
+    public ResponseEntity<?> send(@RequestBody WatchInfoDto.Request request) {
 
         //connect user to watch VOD
         connectService.connectUser(request);
 
         return new ResponseEntity<>(HttpStatus.OK);
+
     }
+
+    @PostMapping("/force")
+    public ResponseEntity<?> forceConnect(@RequestBody ExistDto.Request request){
+
+        connectService.forceConnect(request);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+
+    }
+
 
 }

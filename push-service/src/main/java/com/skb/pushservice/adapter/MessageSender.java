@@ -14,10 +14,11 @@ public class MessageSender {
 
     private static final Logger logger = LoggerFactory.getLogger(MessageSender.class);
 
-    private final KafkaTemplate<String, WatchInfoDto.Request> kafkaTemplate;
+    private final KafkaTemplate<String, WatchInfoDto.Request> watchInfoKafkaTemplate;
 
     public void sendMessage(String topic, WatchInfoDto.Request dto){
-        kafkaTemplate.send(topic,dto);
-        logger.info("produce new user complete");
+        watchInfoKafkaTemplate.send(topic,dto);
+        logger.info(topic + " produced.");
     }
+
 }

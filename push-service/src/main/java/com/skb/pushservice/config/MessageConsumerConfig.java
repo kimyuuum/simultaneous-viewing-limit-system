@@ -37,7 +37,7 @@ public class MessageConsumerConfig {
     }
 
     @Bean
-    public ConsumerFactory<String, ExistDto.Response> consumerFactory(){
+    public ConsumerFactory<String, ExistDto.Response> existConsumerFactory(){
         return new DefaultKafkaConsumerFactory<>(consumerConfigs(),
                 new StringDeserializer(),
                 new JsonDeserializer<>(ExistDto.Response.class,false));
@@ -46,7 +46,7 @@ public class MessageConsumerConfig {
     @Bean
     public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String,ExistDto.Response>> kafkaListenerContainerFactory(){
         ConcurrentKafkaListenerContainerFactory<String,ExistDto.Response> factory = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(consumerFactory());
+        factory.setConsumerFactory(existConsumerFactory());
         return factory;
     }
 }

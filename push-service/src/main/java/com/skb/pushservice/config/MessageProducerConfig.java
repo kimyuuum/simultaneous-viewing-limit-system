@@ -35,14 +35,18 @@ public class MessageProducerConfig {
         return props;
     }
 
+    /*
+     * TODO : FIX factory & template generic...
+     */
+
     @Bean
-    public ProducerFactory<String, WatchInfoDto.Request> dtoProducerFactory(){
+    public ProducerFactory<String, WatchInfoDto.Request> watchInfoProducerFactory(){
         return new DefaultKafkaProducerFactory<>(dtoProducerConfigs());
     }
 
     @Bean
-    public KafkaTemplate<String, WatchInfoDto.Request> kafkaTemplate(){
-        return new KafkaTemplate<>(dtoProducerFactory());
+    public KafkaTemplate<String, WatchInfoDto.Request> watchInfoKafkaTemplate(){
+        return new KafkaTemplate<>(watchInfoProducerFactory());
     }
 
 }

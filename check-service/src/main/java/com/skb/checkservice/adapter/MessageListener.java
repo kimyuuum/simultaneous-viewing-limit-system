@@ -10,17 +10,20 @@ import org.springframework.stereotype.Component;
 @Component
 public class MessageListener {
 
-    private static final String topic = "connectNewUser";
-
     private final CheckViewingService checkViewingService;
 
     public MessageListener(CheckViewingService checkViewingService) {
         this.checkViewingService = checkViewingService;
     }
 
-    @KafkaListener(topics = topic, containerFactory = "kafkaListenerContainerFactory",groupId = "watch-info-group")
+    @KafkaListener(topics = "connectNewUser", containerFactory = "newKafkaListenerContainerFactory", groupId = "watch-info-group")
     public void consumeWatchInfo(@Payload WatchInfoDto.Request payload){
-       checkViewingService.checkLog(payload);
+        checkViewingService.checkLog(payload);
+
     }
 
+    @KafkaListener(topics = "forceConnect", containerFactory = "forceKafkaListenerContainerFactory", groupId = "force-info-group")
+    public void consumeForceConnectInfo(@Payload WatchInfoDto.Request payload){
+        checkViewingService.updateLog(payload);
+    }
 }
