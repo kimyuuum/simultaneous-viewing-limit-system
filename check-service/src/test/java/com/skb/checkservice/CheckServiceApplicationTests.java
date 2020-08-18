@@ -1,7 +1,7 @@
 package com.skb.checkservice;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.skb.checkservice.domain.User;
+import com.skb.checkservice.domain.WatchInfo;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,14 +17,14 @@ class CheckServiceApplicationTests {
 
 
     @Autowired
-    private RedisTemplate<String, User> redisTemplate;
+    private RedisTemplate<String, WatchInfo> redisTemplate;
 
     @Qualifier("serializingObjectMapper")
     @Autowired
     ObjectMapper objectMapper;
 
-    private User newUser() {
-        return User.builder()
+    private WatchInfo newUser() {
+        return WatchInfo.builder()
                 .macAddress("testMacNum")
                 .playStart("2010-10-10'T'08:03:02")
                 .playEnd("2020-10-10'T'12:01:01")
@@ -45,7 +45,7 @@ class CheckServiceApplicationTests {
         redisTemplate.opsForHash().put(stbId, episodeId, newUser());
 
         Object result = redisTemplate.opsForHash().get(stbId,episodeId);
-        User user = objectMapper.convertValue(result,User.class);
+        WatchInfo user = objectMapper.convertValue(result,WatchInfo.class);
 
         Logger logger = LoggerFactory.getLogger(CheckServiceApplicationTests.class);
         logger.info("{}",user);
