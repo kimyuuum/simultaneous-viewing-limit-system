@@ -1,8 +1,20 @@
 HELP.md
-target/
-!.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+
+## Maven:
+!.mvn/wrapper/maven-wrapper.jar
+/.mvn/
+/mvnw
+/mvnw.bat
+mvnw.cmd
+/log/
+*.log*
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.next
+release.properties
 
 ### STS ###
 .apt_generated
@@ -31,3 +43,27 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Java ###
+# Compiled class file
+*.class
+
+
+# Log file
+*.log
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
