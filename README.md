@@ -11,3 +11,7 @@ Limit simultaneous viewing with Apache Kafka & Spring Boot Microservices, Redis
 
 ### Redis Cluster tutorial
 [😎  Start Redis cluster easily](https://github.com/kimyuuum/redis-cluster-tutorial)
+
+### Kafka tutorial
+[🙄 Start Kafka easily](https://github.com/kimyuuum/kafka-cluster-tutorial)
+
