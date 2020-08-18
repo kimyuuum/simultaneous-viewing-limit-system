@@ -1,7 +1,7 @@
 package com.skb.checkservice.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.skb.checkservice.domain.User;
+import com.skb.checkservice.domain.WatchInfo;
 import com.skb.checkservice.dto.WatchInfoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,30 +15,20 @@ public class RedisClusterService {
     @Autowired
     ObjectMapper objectMapper;
 
-    private final RedisTemplate<String,User> redisTemplate;
+    private final RedisTemplate<String, WatchInfo> redisTemplate;
 
-    public RedisClusterService(RedisTemplate<String, User> redisTemplate) {
+    public RedisClusterService(RedisTemplate<String, WatchInfo> redisTemplate) {
         this.redisTemplate = redisTemplate;
     }
 
-    public User create(WatchInfoDto.Request dto){
-        User newUser = User.builder()
-                            .pcid(dto.getPcid())
-                            .episodeId(dto.getEpisodeId())
-                            .stbId(dto.getStbId())
-                            .playStart(dto.getPlayStart())
-                            .macAddress(dto.getMacAddress())
-                            .running(true)
-                            .build();
-
-        redisTemplate.opsForHash().put(dto.getStbId(), dto.getEpisodeId(),newUser);
-        return objectMapper.convertValue(redisTemplate.opsForHash().get(dto.getStbId(),dto.getEpisodeId()),User.class);
+    public void create(WatchInfoDto.Request dto){
+        redisTemplate.opsForHash().put(dto.getStbId(), dto.getEpisodeId(),dto.toEntity());
     }
 
     public boolean checkIsRunning(String stbId, String episodeId){
         //if VOD Log presents check is running
         if(redisTemplate.opsForHash().hasKey(stbId,episodeId)){
-            User user = objectMapper.convertValue(redisTemplate.opsForHash().get(stbId,episodeId),User.class);
+            WatchInfo user = objectMapper.convertValue(redisTemplate.opsForHash().get(stbId,episodeId),WatchInfo.class);
             return user.isRunning();
         }else{
             return false;
@@ -46,6 +36,6 @@ public class RedisClusterService {
     }
 
     public String getExistUser(String stbId, String episodeId){
-        return objectMapper.convertValue(redisTemplate.opsForHash().get(stbId,episodeId),User.class).getPcid();
+        return objectMapper.convertValue(redisTemplate.opsForHash().get(stbId,episodeId),WatchInfo.class).getPcid();
     }
 }

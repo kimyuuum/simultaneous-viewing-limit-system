@@ -25,4 +25,10 @@ public class WatchInfo {
     @JsonProperty("mac_address")
     private String macAddress;
 
+    @JsonProperty("play_end")
+    private String playEnd;
+
+    @JsonProperty
+    private boolean running;
+
 }

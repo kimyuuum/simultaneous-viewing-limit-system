@@ -1,6 +1,6 @@
 package com.skb.checkservice.config.redis;
 
-import com.skb.checkservice.domain.User;
+import com.skb.checkservice.domain.WatchInfo;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisClusterConfiguration;
@@ -35,8 +35,8 @@ public class redisConfig {
     }
 
     @Bean
-    public RedisTemplate<String, User> redisTemplate() {
-        RedisTemplate<String, User> redisTemplate = new RedisTemplate<>();
+    public RedisTemplate<String, WatchInfo> redisTemplate() {
+        RedisTemplate<String, WatchInfo> redisTemplate = new RedisTemplate<>();
 
         redisTemplate.setConnectionFactory(this.redisConnectionFactory());
 
@@ -47,7 +47,7 @@ public class redisConfig {
         redisTemplate.setValueSerializer(new StringRedisSerializer());
 
         redisTemplate.setHashKeySerializer(new StringRedisSerializer());
-        redisTemplate.setHashValueSerializer(new Jackson2JsonRedisSerializer<>(User.class));
+        redisTemplate.setHashValueSerializer(new Jackson2JsonRedisSerializer<>(WatchInfo.class));
 
         return redisTemplate;
     }
