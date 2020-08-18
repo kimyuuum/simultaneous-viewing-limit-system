@@ -6,17 +6,6 @@
     <script src="sockjs-0.3.4.min.js"></script>
     <script src="stomp.min.js"></script>
 </head>
-
-<body>
-<p th:inline="text">
-    You are logged as: <b>[[${#httpServletRequest.remoteUser}]]</b>
-    (<a href="/logout">logout</a>)
-</p>
-<p>
-    Notifications received on the web socket channel will be displayed below:
-</p>
-<textarea id="notifications-area" cols="60" rows="10" readonly="readonly"></textarea>
-
 <!-- Javascript functions -->
 <script>
 
@@ -31,11 +20,10 @@
 
         // Subscribe the '/notify' channel
         stompClient.connect({}, function(frame) {
-            stompClient.subscribe('/user/queue/notify', function(notification) {
+            stompClient.subscribe('/user/queue/disconnect', function(notification) {
 
                 // Call the notify function when receive a notification
-                // notify(JSON.parse(notification.body).content);
-                notify(JSON.parse(notification.body).message);
+                notify(JSON.parse(notification.body));
             });
         });
 
@@ -46,22 +34,31 @@
      * Display the notification message.
      */
     function notify(message) {
-        // $("#notifications-area").append(message + "\n");
-        let result = confirm(message + " is watching. Are you sure you want to disconnect?");
-        return;
+        alert("The user '" + message.new_user + "' connected this VOD. You have been disconnected.");
+        location.href = "/main";
+
     }
 
     /**
      * Init operations.
      */
     $(document).ready(function() {
-
         // Start the web socket connection.
         connect();
 
     });
 
 </script>
+
+<body>
+<p th:inline="text">
+    You are logged as: <b>[[${#httpServletRequest.remoteUser}]]</b>
+    (<a href="/logout">logout</a>)
+</p>
+<p>
+    Notifications received on the web socket channel will be displayed below:
+</p>
+<textarea id="notifications-area" cols="60" rows="10" readonly="readonly"></textarea>
 
 <br/>
 <hr/>

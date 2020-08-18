@@ -28,15 +28,28 @@
     function connectVOD(event){
         event.preventDefault();
 
-        var data = {pcid:$("#userName").text()};
+        let watch_info = {};
+        watch_info.pcid = $("#userName").text();
+        watch_info.episode_id = "episode_id";
+        watch_info.stb_id = "stb_id";
+        watch_info.play_start = "2020-08-18'T'15:41:00";
+        watch_info.mac_address = "mac_address";
+        watch_info.running = true;
 
         $.ajax({
             url: "/send",
             type: "POST",
             contentType: 'application/json',
-            data:JSON.stringify(data),
+            data:JSON.stringify(watch_info),
             dataType: JSON
         });
+
+        /*
+         * need to FIX
+        */
+        setTimeout(function(){
+            window.location = "/notifications";
+        },1500);
 
         return;
     }
@@ -47,25 +60,59 @@
     function connect() {
 
         // Init the SockJS object
-        var socket = new SockJS('/ws');
-        var stompClient = Stomp.over(socket);
+        let socket = new SockJS('/ws');
+        let stompClient = Stomp.over(socket);
 
         // Subscribe the '/notify' channel
         stompClient.connect({}, function(frame) {
             stompClient.subscribe('/user/queue/notify', function(notification) {
 
                 // Call the notify function when receive a notification
-                notify(JSON.parse(notification.body).message);
+                var response = JSON.parse(notification.body);
+                notify(response);
             });
         });
 
         return;
     } // function connect
 
-    function notify(message) {
-        let result = confirm(message + " Are you sure you want to disconnect?");
+    function notify(response) {
+        let result = confirm(response.exist_user + " is watching VOD now. Are you sure you want to disconnect?");
+        if(result){
+            forceConnect(response);
+            //and redirect to VOD watching page
+            window.location = "/notifications";
+        }
         return;
     }
+
+    /*
+    *   Force connection
+    */
+    function forceConnect(response){
+
+        let newUser = response.new_user;
+
+        //declare watch info in client
+        let watch_info = {};
+        watch_info.pcid = newUser;
+        watch_info.episode_id = "episode_id";
+        watch_info.stb_id = "stb_id";
+        watch_info.play_start = "2020-08-18'T'15:41:00";
+        watch_info.mac_address = "mac_address";
+
+        response.watch_info = watch_info;
+
+        $.ajax({
+            url: "/force",
+            type: "POST",
+            contentType: 'application/json',
+            data:JSON.stringify(response),
+            dataType: JSON
+        });
+
+    }//function force connect
+
 
     /**
      * Init operations.
