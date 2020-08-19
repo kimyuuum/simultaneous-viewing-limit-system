@@ -13,7 +13,7 @@ I ❤️ `issue` & `pull requests` & ... ⭐ 🙄
 
 Most people use media services. Recently, users (especially because of the covid-19 😷 ) have been staying indoors, and usage has been increasing. In particular, it uses OTT services, which have subscription-based pricing services.
 
-Therefore, there is a trend that users **share their accounts** and use them. Are there any **policy or technical issues** that could arise from this?
+Therefore, there is a trend that users **share their accounts** and use them together. Are there any **policy or technical issues** that could arise from this?
 
 If it is an account sharing service, there is an issue about **`simultaneous viewing restrictions`**. Then, let's implement this simultaneous viewing limit asynchronously and expandable from the basics through various micro-services! 👩🏻‍💻👨‍💻
 
