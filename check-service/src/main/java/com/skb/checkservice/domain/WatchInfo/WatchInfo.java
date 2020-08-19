@@ -1,31 +1,34 @@
-package com.skb.pushservice.domain;
+package com.skb.checkservice.domain.WatchInfo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.springframework.data.redis.core.RedisHash;
 
+import java.io.Serializable;
+
+
+@RedisHash("user")
 @Getter
 @Builder
 @AllArgsConstructor
-public class WatchInfo {
+@NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class WatchInfo implements Serializable {
 
-    @JsonProperty
     private String pcid;
 
-    @JsonProperty("episode_id")
     private String episodeId;
 
-    @JsonProperty("stb_id")
     private String stbId;
 
-    @JsonProperty("play_start")
     private String playStart;
 
-    @JsonProperty("mac_address")
     private String macAddress;
 
-    @JsonProperty("play_end")
     private String playEnd;
 
     @JsonProperty

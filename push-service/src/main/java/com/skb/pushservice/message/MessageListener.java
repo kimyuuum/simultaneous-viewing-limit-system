@@ -1,6 +1,6 @@
-package com.skb.pushservice.adapter;
+package com.skb.pushservice.message;
 
-import com.skb.pushservice.dto.ExistDto;
+import com.skb.pushservice.domain.Exist.ExistDto;
 import com.skb.pushservice.service.NotificationService;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.messaging.handler.annotation.Payload;

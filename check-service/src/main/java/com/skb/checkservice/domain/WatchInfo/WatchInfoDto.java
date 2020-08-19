@@ -1,8 +1,8 @@
-package com.skb.checkservice.dto;
+package com.skb.checkservice.domain.WatchInfo;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.skb.checkservice.domain.WatchInfo;
+import com.skb.checkservice.domain.WatchInfo.WatchInfo;
 import lombok.Getter;
 
 public class WatchInfoDto {

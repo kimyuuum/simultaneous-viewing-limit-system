@@ -1,4 +1,4 @@
-package com.skb.checkservice.dto;
+package com.skb.checkservice.domain.User;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

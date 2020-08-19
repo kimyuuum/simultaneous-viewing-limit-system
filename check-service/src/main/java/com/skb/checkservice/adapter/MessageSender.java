@@ -1,6 +1,6 @@
 package com.skb.checkservice.adapter;
 
-import com.skb.checkservice.dto.UserDto;
+import com.skb.checkservice.domain.User.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

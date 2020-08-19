@@ -1,8 +1,8 @@
-package com.skb.pushservice.dto;
+package com.skb.pushservice.domain.WatchInfo;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.skb.pushservice.domain.WatchInfo;
+import com.skb.pushservice.domain.WatchInfo.WatchInfo;
 import lombok.Builder;
 import lombok.Getter;
 

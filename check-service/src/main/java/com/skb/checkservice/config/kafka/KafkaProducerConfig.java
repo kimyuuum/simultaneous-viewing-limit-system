@@ -1,7 +1,7 @@
 package com.skb.checkservice.config.kafka;
 
 
-import com.skb.checkservice.dto.UserDto;
+import com.skb.checkservice.domain.User.UserDto;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;

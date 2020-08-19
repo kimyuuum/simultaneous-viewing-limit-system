@@ -1,7 +1,7 @@
 package com.skb.pushservice.controller;
 
-import com.skb.pushservice.dto.ExistDto;
-import com.skb.pushservice.dto.WatchInfoDto;
+import com.skb.pushservice.domain.Exist.ExistDto;
+import com.skb.pushservice.domain.WatchInfo.WatchInfoDto;
 import com.skb.pushservice.service.ConnectService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
