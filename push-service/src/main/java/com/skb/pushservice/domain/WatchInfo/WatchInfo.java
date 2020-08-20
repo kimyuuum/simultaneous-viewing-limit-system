@@ -1,6 +1,8 @@
 package com.skb.pushservice.domain.WatchInfo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -8,27 +10,22 @@ import lombok.Getter;
 @Getter
 @Builder
 @AllArgsConstructor
+@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class WatchInfo {
 
     @JsonProperty
     private String pcid;
 
-    @JsonProperty("episode_id")
     private String episodeId;
 
-    @JsonProperty("stb_id")
     private String stbId;
 
-    @JsonProperty("play_start")
     private String playStart;
 
-    @JsonProperty("mac_address")
     private String macAddress;
 
-    @JsonProperty("play_end")
     private String playEnd;
 
-    @JsonProperty
     private boolean running;
 
 }
