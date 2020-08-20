@@ -1,6 +1,6 @@
 package com.skb.pushservice.config;
 
-import com.skb.pushservice.dto.WatchInfoDto;
+import com.skb.pushservice.domain.WatchInfo.WatchInfoDto;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;

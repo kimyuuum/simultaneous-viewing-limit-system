@@ -1,7 +1,7 @@
 package com.skb.pushservice.service;
 
 
-import com.skb.pushservice.dto.ExistDto;
+import com.skb.pushservice.domain.Exist.ExistDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;

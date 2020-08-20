@@ -1,6 +1,6 @@
 package com.skb.checkservice.config.kafka;
 
-import com.skb.checkservice.dto.WatchInfoDto;
+import com.skb.checkservice.domain.WatchInfo.WatchInfoDto;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;

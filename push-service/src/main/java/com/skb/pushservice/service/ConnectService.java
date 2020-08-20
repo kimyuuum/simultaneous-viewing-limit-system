@@ -1,8 +1,8 @@
 package com.skb.pushservice.service;
 
-import com.skb.pushservice.adapter.MessageSender;
-import com.skb.pushservice.dto.ExistDto;
-import com.skb.pushservice.dto.WatchInfoDto;
+import com.skb.pushservice.message.MessageSender;
+import com.skb.pushservice.domain.Exist.ExistDto;
+import com.skb.pushservice.domain.WatchInfo.WatchInfoDto;
 import org.springframework.stereotype.Service;
 
 @Service

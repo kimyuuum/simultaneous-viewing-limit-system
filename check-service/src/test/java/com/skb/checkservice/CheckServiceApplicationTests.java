@@ -1,7 +1,7 @@
 package com.skb.checkservice;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.skb.checkservice.domain.WatchInfo;
+import com.skb.checkservice.domain.WatchInfo.WatchInfo;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

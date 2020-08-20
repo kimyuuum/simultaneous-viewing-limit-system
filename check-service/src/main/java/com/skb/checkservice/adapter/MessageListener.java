@@ -1,7 +1,7 @@
 package com.skb.checkservice.adapter;
 
 
-import com.skb.checkservice.dto.WatchInfoDto;
+import com.skb.checkservice.domain.WatchInfo.WatchInfoDto;
 import com.skb.checkservice.service.CheckViewingService;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.messaging.handler.annotation.Payload;

@@ -1,6 +1,6 @@
 package com.skb.checkservice.config.redis;
 
-import com.skb.checkservice.domain.WatchInfo;
+import com.skb.checkservice.domain.WatchInfo.WatchInfo;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisClusterConfiguration;

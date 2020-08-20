@@ -1,7 +1,7 @@
-package com.skb.pushservice.adapter;
+package com.skb.pushservice.message;
 
 
-import com.skb.pushservice.dto.WatchInfoDto;
+import com.skb.pushservice.domain.WatchInfo.WatchInfoDto;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

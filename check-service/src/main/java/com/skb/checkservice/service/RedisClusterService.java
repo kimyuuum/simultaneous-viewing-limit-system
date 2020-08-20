@@ -1,8 +1,8 @@
 package com.skb.checkservice.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.skb.checkservice.domain.WatchInfo;
-import com.skb.checkservice.dto.WatchInfoDto;
+import com.skb.checkservice.domain.WatchInfo.WatchInfo;
+import com.skb.checkservice.domain.WatchInfo.WatchInfoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;

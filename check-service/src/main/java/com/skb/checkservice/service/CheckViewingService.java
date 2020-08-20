@@ -1,8 +1,8 @@
 package com.skb.checkservice.service;
 
 import com.skb.checkservice.adapter.MessageSender;
-import com.skb.checkservice.dto.UserDto;
-import com.skb.checkservice.dto.WatchInfoDto;
+import com.skb.checkservice.domain.User.UserDto;
+import com.skb.checkservice.domain.WatchInfo.WatchInfoDto;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -1,4 +1,4 @@
-package com.skb.checkservice.domain;
+package com.skb.checkservice.domain.WatchInfo;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -11,7 +11,7 @@ import org.springframework.data.redis.core.RedisHash;
 import java.io.Serializable;
 
 
-@RedisHash("user")
+@RedisHash("watchLog")
 @Getter
 @Builder
 @AllArgsConstructor
