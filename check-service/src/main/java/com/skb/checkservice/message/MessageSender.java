@@ -13,10 +13,16 @@ public class MessageSender {
 
     private static final Logger logger = LoggerFactory.getLogger(MessageSender.class);
 
-    private final KafkaTemplate<String, UserDto.Response> kafkaTemplate;
+    private final KafkaTemplate<String, UserDto.Response> dtoKafkaTemplate;
+    private final KafkaTemplate<String,String> stringKafkaTemplate;
 
     public void sendMessage(String topic, UserDto.Response dto) {
-        kafkaTemplate.send(topic, dto);
+        dtoKafkaTemplate.send(topic, dto);
         logger.info("produce user exists complete");
+    }
+
+    public void sendMessage(String topic, String message){
+        stringKafkaTemplate.send(topic,message);
+        logger.info("Produce success response : update user");
     }
 }

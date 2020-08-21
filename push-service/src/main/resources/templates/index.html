@@ -9,12 +9,12 @@
 
 <body>
 <p th:inline="text">
-    Client Name : <b id = "userName">[[${#httpServletRequest.remoteUser}]]</b>
+    Client Name : <b id="userName">[[${#httpServletRequest.remoteUser}]]</b>
     (<a href="/logout">logout</a>)
 </p>
 <p>
     Click the button to watch VOD.
-    <br />
+    <br/>
     <strong>If user exists,</strong> you will be notified via web socket.
 </p>
 <input id="send" type="button" value="Click me"/>
@@ -25,7 +25,7 @@
      * Send an action to the server.
      */
 
-    function connectVOD(event){
+    function connectVOD(event) {
         event.preventDefault();
 
         let watch_info = {};
@@ -40,16 +40,9 @@
             url: "/send",
             type: "POST",
             contentType: 'application/json',
-            data:JSON.stringify(watch_info),
+            data: JSON.stringify(watch_info),
             dataType: JSON
         });
-
-        /*
-         * need to FIX
-        */
-        setTimeout(function(){
-            window.location = "/notifications";
-        },1500);
 
         return;
     }
@@ -64,13 +57,18 @@
         let stompClient = Stomp.over(socket);
 
         // Subscribe the '/notify' channel
-        stompClient.connect({}, function(frame) {
-            stompClient.subscribe('/user/queue/notify', function(notification) {
+        stompClient.connect({}, function (frame) {
+            stompClient.subscribe('/user/queue/notify', function (notification) {
 
                 // Call the notify function when receive a notification
-                var response = JSON.parse(notification.body);
+                let response = JSON.parse(notification.body);
                 notify(response);
             });
+            stompClient.subscribe('/user/queue/connect', function (notification) {
+
+                //Call the redirect function when receive a success response
+                window.location = "/notifications";
+            })
         });
 
         return;
@@ -78,7 +76,7 @@
 
     function notify(response) {
         let result = confirm(response.exist_user + " is watching VOD now. Are you sure you want to disconnect?");
-        if(result){
+        if (result) {
             forceConnect(response);
             //and redirect to VOD watching page
             window.location = "/notifications";
@@ -89,7 +87,7 @@
     /*
     *   Force connection
     */
-    function forceConnect(response){
+    function forceConnect(response) {
 
         let newUser = response.new_user;
 
@@ -107,7 +105,7 @@
             url: "/force",
             type: "POST",
             contentType: 'application/json',
-            data:JSON.stringify(response),
+            data: JSON.stringify(response),
             dataType: JSON
         });
 
@@ -117,7 +115,7 @@
     /**
      * Init operations.
      */
-    $(document).ready(function() {
+    $(document).ready(function () {
         connect();
         $("#send").on("click", connectVOD);
     });

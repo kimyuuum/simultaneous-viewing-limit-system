@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class MessageListener {
 
     private static final String existTopic = "userExists";
-
+    private static final String success = "success";
     private final NotificationService notificationService;
 
     public MessageListener(NotificationService notificationService) {
@@ -18,7 +18,13 @@ public class MessageListener {
     }
 
     @KafkaListener(topics = existTopic, containerFactory = "kafkaListenerContainerFactory", groupId = "exist-info-group")
-    public void consumeExistUserInfo(@Payload ExistDto.Response payload){
+    public void consumeExistUserInfo(@Payload ExistDto.Response payload) {
         notificationService.notifyUserExists(payload);
     }
+
+    @KafkaListener(topics = success, containerFactory = "successKafkaListenerContainerFactory", groupId = "success-response-group")
+    public void successResponse(@Payload String payload) {
+        notificationService.notifySuccess(payload, "Update info success.");
+    }
+
 }
