@@ -24,30 +24,54 @@ public class MessageConsumerConfig {
     @Value(value = "${spring.kafka.bootstrap-servers}")
     private String bootStrapServers;
 
-    private static final String groupId = "exist-info-group";
+    private static final String existGroup = "exist-info-group";
+    private static final String successResponse = "success-response-group";
 
     @Bean
-    Map<String,Object> consumerConfigs(){
-        Map<String,Object> props = new HashMap<>();
-        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,bootStrapServers);
+    Map<String, Object> consumerConfigs() {
+        Map<String, Object> props = new HashMap<>();
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootStrapServers);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
-        props.put(ConsumerConfig.GROUP_ID_CONFIG,groupId);
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, existGroup);
         return props;
     }
 
     @Bean
-    public ConsumerFactory<String, ExistDto.Response> existConsumerFactory(){
-        return new DefaultKafkaConsumerFactory<>(consumerConfigs(),
-                new StringDeserializer(),
-                new JsonDeserializer<>(ExistDto.Response.class,false));
+    Map<String, Object> successConsumerConfigs() {
+        Map<String, Object> props = new HashMap<>();
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootStrapServers);
+        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, successResponse);
+        return props;
     }
 
     @Bean
-    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String,ExistDto.Response>> kafkaListenerContainerFactory(){
-        ConcurrentKafkaListenerContainerFactory<String,ExistDto.Response> factory = new ConcurrentKafkaListenerContainerFactory<>();
+    public ConsumerFactory<String, ExistDto.Response> existConsumerFactory() {
+        return new DefaultKafkaConsumerFactory<>(consumerConfigs(),
+                new StringDeserializer(),
+                new JsonDeserializer<>(ExistDto.Response.class, false));
+    }
+
+    @Bean
+    public ConsumerFactory<String, String> successConsumerFactory() {
+        return new DefaultKafkaConsumerFactory<>(successConsumerConfigs(), new StringDeserializer(), new StringDeserializer());
+    }
+
+    @Bean
+    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, ExistDto.Response>> kafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, ExistDto.Response> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(existConsumerFactory());
         return factory;
     }
+
+    @Bean
+    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>> successKafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(successConsumerFactory());
+        return factory;
+    }
+
 }
 

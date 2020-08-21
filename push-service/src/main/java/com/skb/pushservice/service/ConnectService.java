@@ -11,34 +11,32 @@ public class ConnectService {
     private final MessageSender messageSender;
     private final NotificationService notificationService;
 
+    private static final String newTopic = "connectNewUser";
+    private static final String forceTopic = "forceConnect";
+    private static final String disconnectTopic = "disconnect";
+
     public ConnectService(MessageSender messageSender, NotificationService notificationService) {
         this.messageSender = messageSender;
         this.notificationService = notificationService;
     }
 
     public void connectUser(WatchInfoDto.Request request) {
-
-        String topic = "connectNewUser";
-        messageSender.sendMessage(topic, request);
-
+        messageSender.sendMessage(newTopic, request);
     }
 
     public void forceConnect(ExistDto.Request request) {
 
         //push alert to exist user
-        notificationService.notifyDisconnect(new ExistDto.Response(request.getNewUser(),
-                request.getExistUser()));
+        notificationService.notifyDisconnect(new ExistDto.Response(request.getNewUser(), request.getExistUser()));
 
         //update watch info in redis
-        String topic = "forceConnect";
-        messageSender.sendMessage(topic, request.getWatchInfo());
+        messageSender.sendMessage(forceTopic, request.getWatchInfo());
 
     }
 
     public void stopConnect(WatchInfoDto.Request request) {
 
-        String topic = "disconnect";
-        messageSender.sendMessage(topic, request);
+        messageSender.sendMessage(disconnectTopic, request);
 
     }
 

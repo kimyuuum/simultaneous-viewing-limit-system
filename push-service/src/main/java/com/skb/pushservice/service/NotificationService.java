@@ -33,4 +33,8 @@ public class NotificationService {
         simpMessagingTemplate.convertAndSendToUser(dto.getExistUser(),"/queue/disconnect",dto);
     }
 
+    public void notifySuccess(String user,String message){
+        simpMessagingTemplate.convertAndSendToUser(user,"/queue/connect",message);
+    }
+
 }

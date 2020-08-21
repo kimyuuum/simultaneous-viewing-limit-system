@@ -13,11 +13,11 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration(proxyBeanMethods = true)
 @EnableRedisRepositories
-public class redisConfig {
+class RedisConfig {
 
     private final ClusterConfigurationProperties clusterConfigurationProperties;
 
-    public redisConfig(ClusterConfigurationProperties clusterConfigurationProperties) {
+    public RedisConfig(ClusterConfigurationProperties clusterConfigurationProperties) {
         this.clusterConfigurationProperties = clusterConfigurationProperties;
     }
 
@@ -25,11 +25,12 @@ public class redisConfig {
     public RedisConnectionFactory redisConnectionFactory() {
         RedisClusterConfiguration redisClusterConfiguration = new RedisClusterConfiguration();
 
-        clusterConfigurationProperties.getNodes().forEach(s -> {
-            //parse host and port
-            String[] url = s.split(":");
-            redisClusterConfiguration.clusterNode(url[0], Integer.parseInt(url[1]));
-        });
+        clusterConfigurationProperties.getNodes()
+                                      .forEach(s -> {
+                                          //parse host and port
+                                          String[] url = s.split(":");
+                                          redisClusterConfiguration.clusterNode(url[0], Integer.parseInt(url[1]));
+                                      });
 
         return new JedisConnectionFactory(redisClusterConfiguration);
     }
