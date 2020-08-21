@@ -20,8 +20,8 @@
         var stompClient = Stomp.over(socket);
 
         // Subscribe the '/notify' channel
-        stompClient.connect({}, function(frame) {
-            stompClient.subscribe('/user/queue/disconnect', function(notification) {
+        stompClient.connect({}, function (frame) {
+            stompClient.subscribe('/user/queue/disconnect', function (notification) {
 
                 // Call the notify function when receive a notification
                 notify(JSON.parse(notification.body));
@@ -47,7 +47,7 @@
      * if client stops VOD, redirect to main Page.
      */
 
-    function stopVOD(status){
+    function stopVOD(status) {
 
         let watch_info = {};
         watch_info.pcid = $("#userName").text();
@@ -57,23 +57,41 @@
         watch_info.running = false;
 
         $.ajax({
-            url : "/stop",
-            type : "PATCH",
-            contentType : 'application/json',
-            data : JSON.stringify(watch_info),
-            dataType : JSON
+            url: "/stop",
+            type: "PATCH",
+            contentType: 'application/json',
+            data: JSON.stringify(watch_info),
+            dataType: JSON
         });
 
-        if(status === "stop"){
+        if (status === "stop") {
             window.location = "/main";
         }
 
     }
 
+    function startVOD() {
+
+        let watch_info = {};
+        watch_info.pcid = $("#userName").text();
+        watch_info.episode_id = "episode_id";
+        watch_info.stb_id = "stb_id";
+        watch_info.mac_address = "mac_address";
+        watch_info.running = true;
+
+        $.ajax({
+            url: "/send",
+            type: "PATCH",
+            contentType: 'application/json',
+            data: JSON.stringify(watch_info),
+            dataType: JSON
+        });
+    }
+
     /**
      * Init operations.
      */
-    $(document).ready(function() {
+    $(document).ready(function () {
         // Start the web socket connection.
         connect();
 
@@ -83,17 +101,17 @@
 
 <body>
 <p th:inline="text">
-    You are logged as: <b>[[${#httpServletRequest.remoteUser}]]</b>
+    You are logged as: <b id="userName">[[${#httpServletRequest.remoteUser}]]</b>
     (<a href="/logout">logout</a>)
 </p>
 <p>
     Notifications received on the web socket channel will be displayed below:
 </p>
-<input id="send-play" type="button" value="play"/>
+<input id="send-play" type="button" value="play" onclick=startVOD(); />
 
-<input id="send-pause" type="button" value="pause" onclick = stopVOD("pause"); />
+<input id="send-pause" type="button" value="pause" onclick=stopVOD("pause"); />
 
-<input id="send-stop" type="button" value="stop" onclick = stopVOD("stop"); />
+<input id="send-stop" type="button" value="stop" onclick=stopVOD("stop"); />
 
 
 <br/>

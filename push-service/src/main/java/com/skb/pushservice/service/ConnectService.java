@@ -1,8 +1,8 @@
 package com.skb.pushservice.service;
 
-import com.skb.pushservice.message.MessageSender;
 import com.skb.pushservice.domain.Exist.ExistDto;
 import com.skb.pushservice.domain.WatchInfo.WatchInfoDto;
+import com.skb.pushservice.message.MessageSender;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,34 +16,30 @@ public class ConnectService {
         this.notificationService = notificationService;
     }
 
-    public void connectUser(WatchInfoDto.Request request){
+    public void connectUser(WatchInfoDto.Request request) {
+
         String topic = "connectNewUser";
+        messageSender.sendMessage(topic, request);
 
-        /*
-         * Declare detail watch information for example
-         * If you send detail watch info from client, you don't need to declare again.
-
-        WatchInfoDto.Request dto = WatchInfoDto.Request.builder()
-                                                        .pcid("pcId")
-                                                        .episodeId("episode_id")
-                                                        .stbId("stb_id")
-                                                        .playStart("2020-08-17'T'01:15:00")
-                                                        .macAddress("mac_address")
-                                                        .build();
-        */
-
-        messageSender.sendMessage(topic,request);
     }
 
-    public void forceConnect(ExistDto.Request request){
+    public void forceConnect(ExistDto.Request request) {
 
         //push alert to exist user
         notificationService.notifyDisconnect(new ExistDto.Response(request.getNewUser(),
-                                                                    request.getExistUser()));
+                request.getExistUser()));
 
         //update watch info in redis
         String topic = "forceConnect";
-        messageSender.sendMessage(topic,request.getWatchInfo());
+        messageSender.sendMessage(topic, request.getWatchInfo());
 
     }
+
+    public void stopConnect(WatchInfoDto.Request request) {
+
+        String topic = "disconnect";
+        messageSender.sendMessage(topic, request);
+
+    }
+
 }

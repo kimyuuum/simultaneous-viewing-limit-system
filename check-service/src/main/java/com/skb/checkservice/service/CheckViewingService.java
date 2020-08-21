@@ -1,8 +1,8 @@
 package com.skb.checkservice.service;
 
-import com.skb.checkservice.adapter.MessageSender;
 import com.skb.checkservice.domain.User.UserDto;
 import com.skb.checkservice.domain.WatchInfo.WatchInfoDto;
+import com.skb.checkservice.message.MessageSender;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,26 +16,26 @@ public class CheckViewingService {
         this.messageSender = messageSender;
     }
 
-    public void checkLog(WatchInfoDto.Request dto){
-        boolean isRunning = redisClusterService.checkIsRunning(dto.getStbId(),dto.getEpisodeId());
-        if(isRunning){
+    public void checkLog(WatchInfoDto.Request dto) {
+        boolean isRunning = redisClusterService.checkIsRunning(dto.getStbId(), dto.getEpisodeId());
+        if (isRunning) {
             // push alert to new User another user already exists -> user Kafka message sender
             String topic = "userExists";
-            String existUser = redisClusterService.getExistUser(dto.getStbId(),dto.getEpisodeId());
+            String existUser = redisClusterService.getExistUser(dto.getStbId(), dto.getEpisodeId());
 
             UserDto.Response response = UserDto.Response.builder()
-                                                    .newUser(dto.getPcid())
-                                                    .existUser(existUser)
-                                                    .build();
+                                                        .newUser(dto.getPcid())
+                                                        .existUser(existUser)
+                                                        .build();
 
-            messageSender.sendMessage(topic,response);
-        }else{
+            messageSender.sendMessage(topic, response);
+        } else {
             redisClusterService.create(dto);
         }
     }
 
-    public void updateLog(WatchInfoDto.Request dto){
-        redisClusterService.create(dto);
+    public void updateLog(WatchInfoDto.Request dto) {
+        redisClusterService.update(dto);
     }
 
 }
