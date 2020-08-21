@@ -7,11 +7,11 @@ import com.skb.pushservice.domain.WatchInfo.WatchInfoDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class ExistDto {
 
     @Getter
     @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
     public static class Request{
 
         private String newUser;
@@ -25,6 +25,7 @@ public class ExistDto {
     @Getter
     @NoArgsConstructor
     @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
     public static class Response{
 
         private String newUser;

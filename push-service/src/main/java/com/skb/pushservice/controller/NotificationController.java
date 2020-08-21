@@ -6,10 +6,7 @@ import com.skb.pushservice.service.ConnectService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class NotificationController {
@@ -27,7 +24,9 @@ public class NotificationController {
 
     //landing page
     @RequestMapping("/main")
-    public String main(){return "main";}
+    public String main() {
+        return "main";
+    }
 
     @RequestMapping("/notifications")
     public String notifications() {
@@ -37,16 +36,13 @@ public class NotificationController {
     @PostMapping("/send")
     @ResponseBody
     public ResponseEntity<?> send(@RequestBody WatchInfoDto.Request request) {
-
         //connect user to watch VOD
         connectService.connectUser(request);
-
         return new ResponseEntity<>(HttpStatus.OK);
-
     }
 
     @PostMapping("/force")
-    public ResponseEntity<?> forceConnect(@RequestBody ExistDto.Request request){
+    public ResponseEntity<?> forceConnect(@RequestBody ExistDto.Request request) {
 
         connectService.forceConnect(request);
 
@@ -54,5 +50,11 @@ public class NotificationController {
 
     }
 
+    @PatchMapping("/stop")
+    public ResponseEntity<?> stopConnect(@RequestBody WatchInfoDto.Request request) {
 
+        connectService.stopConnect(request);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

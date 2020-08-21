@@ -31,7 +31,6 @@ public class WatchInfo implements Serializable {
 
     private String playEnd;
 
-    @JsonProperty
     private boolean running;
 
 }

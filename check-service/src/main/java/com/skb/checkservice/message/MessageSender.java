@@ -1,4 +1,4 @@
-package com.skb.checkservice.adapter;
+package com.skb.checkservice.message;
 
 import com.skb.checkservice.domain.User.UserDto;
 import lombok.RequiredArgsConstructor;
@@ -13,10 +13,10 @@ public class MessageSender {
 
     private static final Logger logger = LoggerFactory.getLogger(MessageSender.class);
 
-    private final KafkaTemplate<String,UserDto.Response> kafkaTemplate;
+    private final KafkaTemplate<String, UserDto.Response> kafkaTemplate;
 
-    public void sendMessage(String topic, UserDto.Response dto){
-        kafkaTemplate.send(topic,dto);
+    public void sendMessage(String topic, UserDto.Response dto) {
+        kafkaTemplate.send(topic, dto);
         logger.info("produce user exists complete");
     }
 }

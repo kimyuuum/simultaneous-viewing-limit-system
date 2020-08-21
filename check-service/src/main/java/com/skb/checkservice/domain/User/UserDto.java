@@ -7,13 +7,13 @@ import lombok.Builder;
 import lombok.Getter;
 
 
-@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class UserDto {
 
     @Getter
     @Builder
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public static class Response{
+    @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
+    public static class Response {
 
         private String newUser;
 

@@ -1,4 +1,4 @@
-package com.skb.checkservice.adapter;
+package com.skb.checkservice.message;
 
 
 import com.skb.checkservice.domain.WatchInfo.WatchInfoDto;
@@ -17,13 +17,18 @@ public class MessageListener {
     }
 
     @KafkaListener(topics = "connectNewUser", containerFactory = "newKafkaListenerContainerFactory", groupId = "watch-info-group")
-    public void consumeWatchInfo(@Payload WatchInfoDto.Request payload){
+    public void consumeWatchInfo(@Payload WatchInfoDto.Request payload) {
         checkViewingService.checkLog(payload);
 
     }
 
     @KafkaListener(topics = "forceConnect", containerFactory = "forceKafkaListenerContainerFactory", groupId = "force-info-group")
-    public void consumeForceConnectInfo(@Payload WatchInfoDto.Request payload){
+    public void consumeForceConnectInfo(@Payload WatchInfoDto.Request payload) {
+        checkViewingService.updateLog(payload);
+    }
+
+    @KafkaListener(topics = "disconnect", containerFactory = "disconnectKafkaListenerContainerFactory", groupId = "disconnect-info-group")
+    public void consumeDisconnect(@Payload WatchInfoDto.Request payload) {
         checkViewingService.updateLog(payload);
     }
 }

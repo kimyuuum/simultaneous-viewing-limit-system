@@ -25,50 +25,59 @@ public class KafkaConsumerConfig {
     private String bootStrapServers;
 
     @Bean
-    Map<String,Object> newConsumerConfigs(){
-      Map<String,Object> props = new HashMap<>();
-      props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,bootStrapServers);
-      props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-      props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
-      props.put(ConsumerConfig.GROUP_ID_CONFIG,"watch-info-group");
-      return props;
-    }
-
-    @Bean
-    public ConsumerFactory<String, WatchInfoDto.Request> newConsumerFactory(){
-        return new DefaultKafkaConsumerFactory<>(newConsumerConfigs(),
-                                                 new StringDeserializer(),
-                                                 new JsonDeserializer<>(WatchInfoDto.Request.class,false));
-    }
-
-    @Bean
-    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, WatchInfoDto.Request>> newKafkaListenerContainerFactory(){
-        ConcurrentKafkaListenerContainerFactory<String,WatchInfoDto.Request> factory = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(newConsumerFactory());
-        return factory;
-    }
-
-    @Bean
-    Map<String,Object> forceConsumerConfigs(){
-        Map<String,Object> props = new HashMap<>();
-        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,bootStrapServers);
+    Map<String, Object> consumerConfigs() {
+        Map<String, Object> props = new HashMap<>();
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootStrapServers);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
-        props.put(ConsumerConfig.GROUP_ID_CONFIG,"force-info-group");
         return props;
     }
 
     @Bean
-    public ConsumerFactory<String, WatchInfoDto.Request> forceConsumerFactory(){
-        return new DefaultKafkaConsumerFactory<>(forceConsumerConfigs(),
+    public ConsumerFactory<String, WatchInfoDto.Request> consumerFactory() {
+        Map<String, Object> props = consumerConfigs();
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, "watch-info-group");
+        return new DefaultKafkaConsumerFactory<>(props,
                 new StringDeserializer(),
-                new JsonDeserializer<>(WatchInfoDto.Request.class,false));
+                new JsonDeserializer<>(WatchInfoDto.Request.class, false));
     }
 
     @Bean
-    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, WatchInfoDto.Request>> forceKafkaListenerContainerFactory(){
-        ConcurrentKafkaListenerContainerFactory<String,WatchInfoDto.Request> factory = new ConcurrentKafkaListenerContainerFactory<>();
+    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, WatchInfoDto.Request>> newKafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, WatchInfoDto.Request> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(consumerFactory());
+        return factory;
+    }
+
+    @Bean
+    public ConsumerFactory<String, WatchInfoDto.Request> forceConsumerFactory() {
+        Map<String, Object> props = consumerConfigs();
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, "force-info-group");
+        return new DefaultKafkaConsumerFactory<>(props,
+                new StringDeserializer(),
+                new JsonDeserializer<>(WatchInfoDto.Request.class, false));
+    }
+
+    @Bean
+    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, WatchInfoDto.Request>> forceKafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, WatchInfoDto.Request> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(forceConsumerFactory());
+        return factory;
+    }
+
+    @Bean
+    public ConsumerFactory<String, WatchInfoDto.Request> disconnectConsumerFactory() {
+        Map<String, Object> props = consumerConfigs();
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, "disconnect-info-group");
+        return new DefaultKafkaConsumerFactory<>(props,
+                new StringDeserializer(),
+                new JsonDeserializer<>(WatchInfoDto.Request.class, false));
+    }
+
+    @Bean
+    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, WatchInfoDto.Request>> disconnectKafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, WatchInfoDto.Request> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(disconnectConsumerFactory());
         return factory;
     }
 }
