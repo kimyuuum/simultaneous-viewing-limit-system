@@ -1,18 +1,16 @@
 package com.skb.checkservice.domain.WatchInfo;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Getter;
 
 
-@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class WatchInfoDto {
 
     @Getter
-    public static class Request{
+    @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
+    public static class Request {
 
-        @JsonProperty
         private String pcid;
 
         private String episodeId;
@@ -25,10 +23,9 @@ public class WatchInfoDto {
 
         private String playEnd;
 
-        @JsonProperty
         private boolean running;
 
-        public WatchInfo toEntity(){
+        public WatchInfo toEntity() {
             return WatchInfo.builder()
                             .pcid(pcid)
                             .episodeId(episodeId)
