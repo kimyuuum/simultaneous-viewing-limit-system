@@ -21,9 +21,7 @@ public class ConnectService {
     }
 
     public void connectUser(WatchInfoDto.Request request) {
-
         messageSender.sendMessage(newTopic, request);
-
     }
 
     public void forceConnect(ExistDto.Request request) {
