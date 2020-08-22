@@ -29,7 +29,7 @@ public class RedisClusterService {
         redisTemplate.opsForHash()
                      .put(dto.getStbId(), dto.getEpisodeId(), dto.toEntity());
         messageSender.sendMessage("success", dto.getPcid());
-        logger.info("Update user info complete");
+        logger.info("Create user info complete");
     }
 
     public void update(WatchInfoDto.Request dto) {
@@ -37,6 +37,7 @@ public class RedisClusterService {
         redisTemplate.opsForHash()
                      .delete(dto.getStbId(), dto.getEpisodeId());
         create(dto);
+        logger.info("Update user info complete");
     }
 
     public boolean checkIsRunning(String stbId, String episodeId) {
