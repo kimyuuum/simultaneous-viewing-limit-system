@@ -3,9 +3,26 @@
 >
 <head>
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-    <script src="sockjs-0.3.4.min.js"></script>
-    <script src="stomp.min.js"></script>
+    <script src="js/sockjs-0.3.4.min.js"></script>
+    <script src="js/stomp.min.js"></script>
+    <style>
+        body {
+            overflow: hidden;
+        }
+        .vod_image{
+            width:100%;
+        }
+        .vod{
+            background-size: 100%;
+        }
+    </style>
 </head>
+<body>
+<div class = "vod"><img class="vod_image" src = "img/play_img.png" onclick="stopVOD('stop')" ></div>
+<br/>
+<hr/>
+
+</body>
 <!-- Javascript functions -->
 <script>
 
@@ -38,8 +55,7 @@
 
     function notify(message) {
         alert("The user '" + message.new_user + "' connected this VOD. You have been disconnected.");
-        location.href = "/main";
-
+        location.href = "/";
     }
 
     /*
@@ -65,7 +81,7 @@
         });
 
         if (status === "stop") {
-            window.location = "/main";
+            window.location = "/";
         }
 
     }
@@ -94,29 +110,8 @@
     $(document).ready(function () {
         // Start the web socket connection.
         connect();
-
     });
 
 </script>
-
-<body>
-<p th:inline="text">
-    You are logged as: <b id="userName">[[${#httpServletRequest.remoteUser}]]</b>
-    (<a href="/logout">logout</a>)
-</p>
-<p>
-    Notifications received on the web socket channel will be displayed below:
-</p>
-<input id="send-play" type="button" value="play" onclick=startVOD(); />
-
-<input id="send-pause" type="button" value="pause" onclick=stopVOD("pause"); />
-
-<input id="send-stop" type="button" value="stop" onclick=stopVOD("stop"); />
-
-
-<br/>
-<hr/>
-
-</body>
 
 </html>

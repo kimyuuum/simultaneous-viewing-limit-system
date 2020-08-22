@@ -22,12 +22,6 @@ public class NotificationController {
         return "index";
     }
 
-    //landing page
-    @RequestMapping("/main")
-    public String main() {
-        return "main";
-    }
-
     @RequestMapping("/notifications")
     public String notifications() {
         return "notifications";
