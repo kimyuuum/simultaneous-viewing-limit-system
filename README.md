@@ -23,7 +23,7 @@ If it is an account sharing service, there is an issue about **`simultaneous vie
 
 In release server, there will be a lot of connections, and watch logs.
 
-When we select log from database, `THERE WILL BE OVERHEAD FOR SELECTS` 
+This system checks log with `key = set-top-box_id` & `hashkey = unique vod episode_id` for searching faster
 
 </br>
 </br>
