@@ -64,8 +64,7 @@ All of these servers are executed by `localhost:portnumber`
 </br>
 </br>
 
-### System Requirements
----
+## System Requirements
 + Java 8
 + Apache Kafka 2.3.0
 + Redis 6.0.x
@@ -86,8 +85,6 @@ All of these servers are executed by `localhost:portnumber`
 
 ### Server ports
 
----
-
 Push Service : `9002`
 </br>
 Check Service : `9000`
@@ -101,7 +98,6 @@ Zookeeper : `2182`
 </br>
 
 ### Required Parameter
----
 
 **Request Params for Start VOD**
 
@@ -135,9 +131,8 @@ Zookeeper : `2182`
 </br>
 </br>
 
-### API Server
+## API Server
 
----
 
 | METHOD | PATH   | DESCRIPTION                                                  |
 | ------ | ------ | ------------------------------------------------------------ |
@@ -158,8 +153,7 @@ Zookeeper : `2182`
 </br>
 </br>
 
-### Execute Spring boot application
----
+## Execute Spring boot application
 
 1. Execute with mvnw
 
@@ -185,9 +179,7 @@ $ java -jar target/check-service-0.0.1-SNAPSHOT.jar
 </br>
 </br>
 
-### Conclusion
-
----
+## Conclusion
 
 Now you can use this Viewing-Limit-System.
 
