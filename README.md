@@ -105,7 +105,7 @@ Zookeeper : `2182`
 
 **Request Params for Start VOD**
 
-```json
+```
 {
   pcid = "username",
   episode_id = "episode_id",
@@ -119,7 +119,7 @@ Zookeeper : `2182`
 
 **Request Params for Stop VOD**
 
-```json
+```
 {
   pcid = "username",
   episode_id = "episode_id",
