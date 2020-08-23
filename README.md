@@ -28,7 +28,7 @@ When we select log from database, `THERE WILL BE OVERHEAD FOR SELECTS`
 </br>
 </br>
 
-### 🧤Why Kafka?
+### 🧤 Why Kafka?
 
 Micro services need to response each other async.
 
@@ -57,6 +57,13 @@ All of these servers are executed by `localhost:portnumber`
 </br>
 </br>
 
+### System Architecture
+
+![image](https://user-images.githubusercontent.com/46887352/90981774-e43c3a80-e59d-11ea-89b9-976fc5dbc157.png)
+
+</br>
+</br>
+
 ### System Requirements
 ---
 + Java 8
@@ -73,5 +80,116 @@ All of these servers are executed by `localhost:portnumber`
 
 #### Kafka tutorial
 [🙄 Start Kafka easily](https://github.com/kimyuuum/kafka-cluster-tutorial)
+
 </br>
 </br>
+
+### Server ports
+
+---
+
+Push Service : `9002`
+</br>
+Check Service : `9000`
+</br>
+Redis Cluster : `7001 ~ 7005`
+</br>
+Kafka Cluster : `9093 ~ 9095`
+</br>
+Zookeeper : `2182`
+</br>
+</br>
+
+### Required Parameter
+---
+
+**Request Params for Start VOD**
+
+```json
+{
+  pcid = "username",
+  episode_id = "episode_id",
+  stb_id = "stb_id",
+  play_start = "YYYY-mm-dd'T'HH:mm:ss",
+  mac_address = "mac_address",
+  running = true
+  
+}
+```
+
+**Request Params for Stop VOD**
+
+```json
+{
+  pcid = "username",
+  episode_id = "episode_id",
+  stb_id = "stb_id",
+  play_start = "YYYY-mm-dd'T'HH:mm:ss",
+  play_end = "YYYY-mm-dd'T'HH:mm:ss",
+  mac_address = "mac_address",
+  running = false
+}
+
+```
+
+</br>
+</br>
+
+### API Server
+
+---
+
+| METHOD | PATH   | DESCRIPTION                                                  |
+| ------ | ------ | ------------------------------------------------------------ |
+| POST   | /send  | Send request data for start watching VOD when new user connects |
+| POST   | /force | Send request data for start watching VOD when another user exists |
+| PATCH  | /stop  | Send request data for stop watching VOD                      |
+
+</br>
+</br>
+
+| PATH              | DESCRIPTION                                                |
+| ----------------- | ---------------------------------------------------------- |
+| /queue/notify     | send notify to user who subscribed each channel            |
+| /queue/disconnect | send disconnect notify to user who subscribed each channel |
+| /queue/connect    | send success response to user who subscribed each channel  |
+
+
+</br>
+</br>
+
+### Execute Spring boot application
+---
+
+1. Execute with mvnw
+
+```bash
+$ ./mvnw spring-boot:run
+```
+</br>
+
+2. Maven Packaging
+
+```bash
+$ mvn package
+```
+</br>
+
+3. Execute with jar file
+
+```bash
+$ java -jar target/push-service-0.0.1-SNAPSHOT.jar
+$ java -jar target/check-service-0.0.1-SNAPSHOT.jar
+```
+
+</br>
+</br>
+
+### Conclusion
+
+---
+
+Now you can use this Viewing-Limit-System.
+
+Contact with my github profiles / dbals4818@gmail.com
+
