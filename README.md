@@ -59,7 +59,8 @@ All of these servers are executed by `localhost:portnumber`
 
 ### System Architecture
 
-![image](https://user-images.githubusercontent.com/46887352/90981774-e43c3a80-e59d-11ea-89b9-976fc5dbc157.png)
+![image](https://user-images.githubusercontent.com/46887352/91052403-5ffcbc80-e65c-11ea-9f86-510c228c4e37.png)
+
 
 </br>
 </br>
