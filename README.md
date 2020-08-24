@@ -1,7 +1,7 @@
 # 👀 simultaneous-viewing-limit-system
 Limit simultaneous viewing with Apache Kafka & Spring Boot Microservices, Redis
 
-I ❤️ `issue` & `pull requests` & ... ⭐ 🙄
+I ❤️ `issue` & `pull requests` & ... 
 
 
 ## Overview
