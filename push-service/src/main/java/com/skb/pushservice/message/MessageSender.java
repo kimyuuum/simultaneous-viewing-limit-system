@@ -16,8 +16,8 @@ public class MessageSender {
 
     private final KafkaTemplate<String, WatchInfoDto.Request> watchInfoKafkaTemplate;
 
-    public void sendMessage(String topic, WatchInfoDto.Request dto){
-        watchInfoKafkaTemplate.send(topic,dto);
+    public void sendMessage(String topic, WatchInfoDto.Request dto) {
+        watchInfoKafkaTemplate.send(topic, dto);
         logger.info(topic + " produced.");
     }
 

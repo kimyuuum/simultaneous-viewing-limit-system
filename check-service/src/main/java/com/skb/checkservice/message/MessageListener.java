@@ -16,12 +16,6 @@ public class MessageListener {
         this.checkViewingService = checkViewingService;
     }
 
-    @KafkaListener(topics = "connectNewUser", containerFactory = "newKafkaListenerContainerFactory", groupId = "watch-info-group")
-    public void consumeWatchInfo(@Payload WatchInfoDto.Request payload) {
-        checkViewingService.checkLog(payload);
-
-    }
-
     @KafkaListener(topics = "forceConnect", containerFactory = "forceKafkaListenerContainerFactory", groupId = "force-info-group")
     public void consumeForceConnectInfo(@Payload WatchInfoDto.Request payload) {
         checkViewingService.updateLog(payload);
