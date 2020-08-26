@@ -18,21 +18,28 @@ public class CheckViewingService {
         this.messageSender = messageSender;
     }
 
-    public void checkLog(WatchInfoDto.Request dto) {
-        boolean isRunning = redisClusterService.checkIsRunning(dto.getStbId(), dto.getEpisodeId());
-        if (isRunning) {
-            // push alert to new User another user already exists -> user Kafka message sender
-            String existUser = redisClusterService.getExistUser(dto.getStbId(), dto.getEpisodeId());
+    public boolean checkLog(WatchInfoDto.Request request) {
 
-            UserDto.Response response = UserDto.Response.builder()
-                                                        .newUser(dto.getPcid())
-                                                        .existUser(existUser)
-                                                        .build();
+        boolean isCreated = false;
+        UserDto.Response response;
+
+        boolean isRunning = redisClusterService.checkIsRunning(request.getStbId(), request.getEpisodeId());
+        if (isRunning) {
+            String existUser = redisClusterService.getExistUser(request.getStbId(), request.getEpisodeId());
+
+            response = UserDto.Response.builder()
+                                       .newUser(request.getPcid())
+                                       .existUser(existUser)
+                                       .build();
 
             messageSender.sendMessage(existTopic, response);
         } else {
-            redisClusterService.create(dto);
+            redisClusterService.create(request);
+            isCreated = true;
         }
+
+        return isCreated;
+
     }
 
     public void updateLog(WatchInfoDto.Request dto) {

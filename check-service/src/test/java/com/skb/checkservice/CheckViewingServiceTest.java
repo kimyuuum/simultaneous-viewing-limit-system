@@ -35,7 +35,7 @@ public class CheckViewingServiceTest {
     }
 
     @Test
-    public void 시청이력_확인(){
+    public void 시청이력_확인() {
 
         //given
         WatchInfoDto.Request dto = createDtoFromJson();
@@ -46,7 +46,7 @@ public class CheckViewingServiceTest {
     }
 
     @Test
-    public void 시청이력_업데이트(){
+    public void 시청이력_업데이트() {
 
         //given
         WatchInfoDto.Request dto = createDtoFromJson();
@@ -54,7 +54,6 @@ public class CheckViewingServiceTest {
         //when
         checkViewingService.updateLog(dto);
     }
-
 
 
 }
