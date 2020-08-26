@@ -137,9 +137,10 @@ Zookeeper : `2182`
 
 | METHOD | PATH   | DESCRIPTION                                                  |
 | ------ | ------ | ------------------------------------------------------------ |
-| POST   | /send  | Send request data for start watching VOD when new user connects |
-| POST   | /force | Send request data for start watching VOD when another user exists |
-| PATCH  | /stop  | Send request data for stop watching VOD                      |
+| POST   | :9002/send  | Send request data for start watching VOD when new user connects |
+| POST   | :9002/force | Send request data for start watching VOD when another user exists |
+| PATCH  | :9002/stop  | Send request data for stop watching VOD                      |
+| POST  | :9000/connect  | Send request data for check connected user   |
 
 </br>
 </br>
